@@ -1,0 +1,101 @@
+Eureka Server enableEurekaServer
+	applicaton.yaml
+		server:
+		     port:
+			8761
+		spring:
+			application
+				name: service-registry
+		eureka:
+			instance:
+				hostname: localhost
+		client:
+			register-with-eureka: false
+			fecth-registry: false
+			serviceUrl:
+				defualtZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+Spring web
+
+department Service
+- zi
+-config-client
+-springweb
+-eurake-discovery-client
+-springboot-acutalator
+@enableDiscoveryClient
+app.yaml
+ server:
+  port: 8081
+ eureka:
+  client:
+   serviceUrl:
+    defaultZone: http://localhost:8761/eureka/
+ spring:
+			application
+				name: department-service
+			config:
+				import: "optinal:configserver:http://localhost:8088"
++ controller
+   - DepartmentController.java
+         Autowired
+       / DepartmentRep repo
+       -/ Logger LOGGER = LoggerFactory.getLogger(DepRepo.class)
+      // @PostMapping add(@RequestBody Dep dep) => dep
+      // @GetMapping List<Dep> findAll() => List<Dep>
+      // @Getmapping("/{id}") Dep findById(@pathvariable long id) => dep
++ repository
+   - DepartmentRepository.java
+	/ List<Dapartment> 
+      // addDepartment(Dep dep) => dep
+      // findByIdd(Long id) => dep.stream().filter(d -> d.getId().equals(id)).findFirst().orElseThrow();
+      // findAll() => List<Dep>
++ model
+   - Department.java
+      / long id, name, List<Employe
+   - Record
+      / id, departmentId, name, age, position
+management:
+ tracing:
+  sampling:
+   probability: 1.0
+
+
+Config Server
+-config server
+ all service must connect to this server
+@EnableConfigServer
+app.yaml
+ server:
+  port: 8088
+ spring:
+  profile:
+   active: native -> default is git
+//ceate config dir in resources
+ + cofing
+   - department-service.yaml
+	copy everything in dp-server and paste in this new file
+   - change
+ 
+zipkin server using docker
++ add zipkin dep 
+
+
+Emp Service
+- spring web
+- zipkin
+- config client
+- eureka-discovery-client
+
+RECOMMENDED BOOKS:
+📙  Mastering Spring Boot 2.0 (Kindle): https://amzn.to/3HsOiHu
+📙  Mastering Spring Boot 2.0 (US):  https://amzn.to/3tHNUy5
+📙  Building Microservices(Kindle): https://amzn.to/3gsA1jL
+📙  Building Microservices(US): https://amzn.to/3dDnfNn
+📙  Spring Boot in Action:  https://amzn.to/32Nf3qW
+📙  Spring Boot in Action (US): https://amzn.to/32DkeX9
+📙  Spring Microservices in Action: https://amzn.to/3mQ4sCH
+📙  Spring Microservices in Action(US): https://amzn.to/32G3Hl7
+
+
+ 
+
